@@ -20,5 +20,5 @@ initializeAPI(app);
 //start the web server
 const serverPort = 3000;
 server.listen(serverPort, () => {
-  console.log(`Express Server started on port ${serverPort}`);
+  console.log(`Express Server started on http://127.0.0.1:${serverPort}/`);
 });
