@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const http = require("http");
 const { initializeAPI } = require("./api");
@@ -6,6 +7,15 @@ const { initializeAPI } = require("./api");
 const app = express();
 app.use(express.json());
 const server = http.createServer(app);
+
+const { rateLimit } = require("express-rate-limit");
+
+const limit = rateLimit({
+  windowMs: 6e4,
+  limit: 50,
+});
+
+app.use(limit);
 
 // deliver static files from the client folder like css, js, images
 app.use(express.static("client"));
@@ -18,7 +28,7 @@ app.get("/", (req, res) => {
 initializeAPI(app);
 
 //start the web server
-const serverPort = 3000;
+const serverPort = process.env.PORT || 3000;
 server.listen(serverPort, () => {
   console.log(`Express Server started on http://127.0.0.1:${serverPort}/`);
 });

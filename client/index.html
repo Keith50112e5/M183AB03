@@ -23,14 +23,17 @@
             <input
               id="username"
               placeholder="Username"
-              type="text"
+              type="email"
               class="w-full p-2 px-4 placeholder-gray-200 rounded bg-slate-400 grow"
+              required
             />
             <input
               id="password"
               placeholder="Password"
               type="password"
               class="w-full p-2 px-4 placeholder-gray-200 rounded bg-slate-400 grow"
+              required
+              minlength="10"
             />
             <div class="grid grid-cols-2 gap-2">
               <button
